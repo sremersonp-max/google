@@ -54,6 +54,7 @@
             height: 100px;
             margin-bottom: 24px;
             box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+            border-radius: 16px;
         }
         .hero h1 {
             font-size: 2.8rem;
@@ -469,7 +470,16 @@
     <!-- ===== HERO ===== -->
     <header class="hero">
         <div class="hero-content">
-            <img class="hero-logo" src="icones/Icon-512x512.png" alt="SQUAD Logo">
+            <svg class="hero-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="100" height="100" rx="16" fill="url(#logo-grad)"/>
+                <text x="50" y="66" text-anchor="middle" font-size="48" font-weight="900" font-family="system-ui,sans-serif" fill="white">S</text>
+                <defs>
+                    <linearGradient id="logo-grad" x1="0" y1="0" x2="100" y2="100">
+                        <stop offset="0%" stop-color="#6366f1"/>
+                        <stop offset="100%" stop-color="#22d3ee"/>
+                    </linearGradient>
+                </defs>
+            </svg>
             <h1>SQUAD</h1>
             <p class="subtitle">Sistema de Gestão para Esquadrias</p>
             <p class="desc">
@@ -663,26 +673,26 @@
             </div>
 
             <div class="screenshots-grid active" id="grid-celular">
-                <img src="telas celular/Screenshot_2026-05-18-21-16-00-05_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 1" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-16-25-21_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 2" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-17-15-72_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 3" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-17-41-29_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 4" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-18-16-89_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 5" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-19-17-54_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 6" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-19-42-62_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 7" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-20-38-20_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 8" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas celular/Screenshot_2026-05-18-21-21-27-24_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 9" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-16-00-05_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 1" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-16-25-21_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 2" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-17-15-72_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 3" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-17-41-29_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 4" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-18-16-89_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 5" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-19-17-54_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 6" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-19-42-62_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 7" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-20-38-20_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 8" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20celular/Screenshot_2026-05-18-21-21-27-24_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 9" loading="lazy" onclick="openLightbox(this.src)">
             </div>
 
             <div class="screenshots-grid" id="grid-pc">
-                <img src="telas pc/Captura de tela 2026-05-19 105637.png" alt="Tela PC 1" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105722.png" alt="Tela PC 2" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105751.png" alt="Tela PC 3" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105806.png" alt="Tela PC 4" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105819.png" alt="Tela PC 5" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105832.png" alt="Tela PC 6" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 105916.png" alt="Tela PC 7" loading="lazy" onclick="openLightbox(this.src)">
-                <img src="telas pc/Captura de tela 2026-05-19 110001.png" alt="Tela PC 8" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105637.png" alt="Tela PC 1" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105722.png" alt="Tela PC 2" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105751.png" alt="Tela PC 3" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105806.png" alt="Tela PC 4" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105819.png" alt="Tela PC 5" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105832.png" alt="Tela PC 6" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20105916.png" alt="Tela PC 7" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas%20pc/Captura%20de%20tela%202026-05-19%20110001.png" alt="Tela PC 8" loading="lazy" onclick="openLightbox(this.src)">
             </div>
         </div>
     </section>
