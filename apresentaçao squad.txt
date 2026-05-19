@@ -1,0 +1,108 @@
+# 🏗️ SQUAD - Sistema de Gestão para Esquadrias
+
+**O controle completo da sua esquadria, vidraçaria ou serralheria na palma da mão!**
+
+---
+
+## 📲 Funciona 100% Offline
+Não depende de internet! Todos os dados ficam salvos no seu dispositivo. Perfeito para uso na fábrica, no escritório ou na obra.
+
+---
+
+## ⚙️ Principais Funcionalidades
+
+### 📦 **Estoque Inteligente**
+- Cadastre perfis, vidros e acessórios
+- Controle unidade de compra × unidade de venda
+- Cálculo automático de custo por metro, unidade ou m²
+- Importação e exportação por planilha (CSV)
+- Organize por categorias, subcategorias e cores
+
+### 🏗️ **Produtos Compostos com Fórmulas**
+- Crie seus produtos: janelas, portas, boxes, sacadas
+- Monte receitas com fórmulas personalizadas (L, A, TP, folhas)
+- Ex: `L/4`, `A-60`, `L/2+TP`
+- Adicione perfis, acessórios e vidros em cada produto
+- Visualize o custo em tempo real com o simulador integrado
+
+### 📐 **Orçamentos Profissionais**
+- Cadastre clientes com telefone e endereço
+- Defina margem de lucro personalizada
+- Adicione produtos compostos ou itens avulsos
+- Cálculo automático de custos e preço de venda
+- Gere PDF, envie por WhatsApp ou imprima
+- Histórico completo com busca por cliente
+
+### 📋 **Pedidos Consolidados**
+- Agrupe vários orçamentos fechados em um único pedido
+- Consolidação automática de materiais por código e cor
+- Checklist de recebimento com barra de progresso
+- Geração de PDF e compartilhamento por WhatsApp
+
+### 📏 **Planilha de Corte Otimizada**
+- Otimização automática do corte de perfis de alumínio
+- Redução de sobras e desperdícios
+- Distribuição visual das peças em cada barra
+- Exportação em PDF, Excel, TXT e compartilhamento
+
+### 💰 **Financeiro Completo**
+- Contas a receber e a pagar
+- Parcelamento com entrada ou parcelado
+- Controle de pagamentos parciais
+- Extrato mensal e relatório anual
+- Conta corrente por cliente com histórico
+
+### 💾 **Backup e Restauração**
+- Backup local em arquivo JSON
+- Backup na nuvem via Google Drive
+- Restauração completa ou seletiva por módulo
+- Seus dados sempre seguros
+
+### 👤 **Dados da Empresa**
+- Cadastre CNPJ, endereço, WhatsApp
+- Dados aparecem automaticamente em todos os documentos
+
+---
+
+## 🎯 Para quem é o Squad?
+
+✅ Vidraçarias  
+✅ Serralherias de alumínio  
+✅ Fabricantes de esquadrias  
+✅ Instaladores de boxes e janelas  
+✅ Pequenas e médias fábricas  
+
+---
+
+## 🌟 Diferenciais
+
+| Funcionalidade | Benefício |
+|:---|:---|
+| **Offline total** | Use em qualquer lugar, mesmo sem sinal |
+| **Cálculo automático** | Digite a medida e veja o preço na hora |
+| **Corte otimizado** | Economize até 15% em perfis |
+| **Fórmulas flexíveis** | Qualquer tipo de produto, sem limites |
+| **Interface mobile** | Use no celular, tablet ou computador |
+| **Backup na nuvem** | Dados seguros no Google Drive |
+| **Sem mensalidade** | Pagamento único, uso vitalício |
+
+---
+
+## 📊 Resultados que você terá:
+
+- ⏱️ **Orçamentos 3x mais rápidos**
+- 📉 **Redução de erros nos cálculos**
+- 💰 **Controle total das finanças**
+- 📦 **Estoque sempre organizado**
+- 🏗️ **Produção otimizada**
+
+---
+
+## 📞 Suporte
+
+Dúvidas ou ajuda? Entre em contato:  
+📱 (42) 99960-8330
+
+---
+
+**SQUAD - Tecnologia que constrói resultados!** 🏗️

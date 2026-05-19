@@ -1,13 +1,791 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Google AI Studio App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQUAD - Gestão para Esquadrias</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0f172a;
+            --accent: #22d3ee;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --card: #ffffff;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER / HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary) 0%, #1e293b 60%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 30%, rgba(99,102,241,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-content { position: relative; max-width: 800px; margin: 0 auto; }
+
+        .hero-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+        .hero .desc {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.65);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 16px rgba(99,102,241,0.35);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99,102,241,0.45);
+        }
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+        /* ===== SECTION ===== */
+        section { padding: 72px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--secondary);
+        }
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+
+        /* ===== FEATURES GRID ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        .feature-card {
+            background: var(--card);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        .feature-card p {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* ===== DIFFERENTIALS ===== */
+        .diffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            padding: 18px 20px;
+        }
+        .diff-item .emoji { font-size: 1.5rem; flex-shrink: 0; }
+        .diff-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+        .diff-item p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* ===== PRICING PLANS ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: stretch;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        @media (max-width: 720px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+        }
+        .pricing-card {
+            background: var(--card);
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card .plan-features { flex: 1; }
+        .pricing-card .btn-pricing,
+        .pricing-card .btn-pricing-outline {
+            margin-top: auto;
+        }
+        .pricing-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+        .pricing-card.destaque {
+            border-color: var(--accent);
+            border-width: 3px;
+            box-shadow: 0 0 0 3px var(--accent), 0 8px 32px rgba(34,211,238,0.15);
+        }
+        .pricing-card.destaque:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 0 3px var(--accent), 0 12px 40px rgba(34,211,238,0.25);
+        }
+        .pricing-card.destaque .badge {
+            background: #22d3ee;
+            color: #0f172a;
+        }
+        .pricing-card .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+        .pricing-card .plan-emoji { font-size: 2.5rem; margin-bottom: 8px; display: block; }
+        .pricing-card .plan-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+        .pricing-card .plan-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 12px 0;
+        }
+        .pricing-card .plan-price span {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        .pricing-card .plan-desc {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .pricing-card .plan-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .pricing-card .plan-features li {
+            font-size: 0.88rem;
+            padding: 6px 0;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pricing-card .plan-features li::before {
+            content: '✅';
+            flex-shrink: 0;
+        }
+        .btn-pricing {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            background: var(--primary);
+            color: white;
+        }
+        .btn-pricing:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        .btn-pricing-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        .btn-pricing-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ===== SCREENSHOTS ===== */
+        .screenshots-bg { background: var(--bg-alt); }
+        .screenshot-tabs {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            padding: 10px 24px;
+            border-radius: 100px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--text-light);
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .screenshots-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .screenshots-grid.active { display: grid; }
+        .screenshots-grid img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s;
+            cursor: pointer;
+            background: #e2e8f0;
+            aspect-ratio: 9 / 16;
+            object-fit: cover;
+        }
+        .screenshots-grid#grid-pc img {
+            aspect-ratio: 16 / 9;
+        }
+        .screenshots-grid img:hover { transform: scale(1.03); }
+
+        /* ===== TARGET AUDIENCE ===== */
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+        .audience-tag {
+            background: var(--bg-alt);
+            border: 1px solid #e2e8f0;
+            border-radius: 100px;
+            padding: 10px 22px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+        .audience-tag::before { content: '✅ '; }
+
+        /* ===== RESULTS ===== */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .result-card {
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius);
+            padding: 28px 20px;
+            text-align: center;
+        }
+        .result-card:nth-child(2) { background: #0f172a; }
+        .result-card:nth-child(3) { background: #059669; }
+        .result-card:nth-child(4) { background: #d97706; }
+        .result-icon { font-size: 2.2rem; margin-bottom: 8px; }
+        .result-card h3 { font-size: 1.8rem; font-weight: 800; }
+        .result-card p { font-size: 0.9rem; opacity: 0.85; }
+
+        /* ===== FOOTER / CTA ===== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary), var(--primary-dark));
+            color: white;
+            text-align: center;
+            padding: 72px 20px;
+        }
+        .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        .cta-section p { color: rgba(255,255,255,0.75); margin-bottom: 28px; font-size: 1.1rem; }
+
+        footer {
+            background: var(--secondary);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 24px 20px;
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 20px;
+        }
+        .lightbox.open { display: flex; }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .subtitle { font-size: 1rem; }
+            .hero { padding: 40px 16px 56px; }
+            section { padding: 48px 16px; }
+            .section-title { font-size: 1.5rem; }
+            .btn { padding: 12px 24px; font-size: 0.95rem; width: 100%; justify-content: center; }
+            .hero-buttons { flex-direction: column; }
+            .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
+            .results-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+        <img id="lightbox-img" src="" alt="Screenshot ampliada">
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <header class="hero">
+        <div class="hero-content">
+            <img class="hero-logo" src="icones/Icon-512x512.png" alt="SQUAD Logo">
+            <h1>SQUAD</h1>
+            <p class="subtitle">Sistema de Gestão para Esquadrias</p>
+            <p class="desc">
+                <strong>Desenvolvido para o pequeno vidraceiro!</strong> O controle completo da sua esquadria, vidraçaria ou serralheria na palma da mão —
+                <strong>100% offline</strong>, direto no navegador do seu celular ou computador.
+                <strong style="display:block; margin-top:12px; color:#22d3ee;">Sem mensalidade • Pagamento único • Vitalício</strong>
+            </p>
+            <div class="hero-buttons">
+                <a href="https://orcamentos-iota.vercel.app/" target="_blank" class="btn btn-primary">
+                    🚀 Experimente Grátis
+                </a>
+                <a href="https://orcamentos-iota.vercel.app/" target="_blank" class="btn btn-outline">
+                    ⭐ Avaliar App
+                </a>
+                <a href="https://wa.me/5542999608330" target="_blank" class="btn btn-whatsapp">
+                    💬 Fale Conosco
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== FUNCIONALIDADES ===== -->
+    <section>
+        <div class="container">
+            <p class="section-tag text-center">⚙️ Funcionalidades</p>
+            <h2 class="section-title text-center">Tudo que você precisa</h2>
+            <p class="section-desc text-center mx-auto">
+                Do orçamento à produção, o SQUAD centraliza a gestão da sua fábrica em um só lugar.
+            </p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">📦</span>
+                    <h3>Estoque Inteligente</h3>
+                    <p>Cadastre perfis, vidros e acessórios. Controle unidade de compra × venda, custo automático por metro/m², importação CSV e organização por categorias.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏗️</span>
+                    <h3>Produtos com Fórmulas</h3>
+                    <p>Crie janelas, portas, boxes com fórmulas personalizadas (L, A, TP). Monte receitas com perfis, acessórios e vidros. Custo em tempo real.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📐</span>
+                    <h3>Orçamentos Profissionais</h3>
+                    <p>Clientes com telefone/endereço, margem de lucro personalizada, PDF, WhatsApp, histórico completo com busca. Orçamentos 3x mais rápidos.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📋</span>
+                    <h3>Pedidos Consolidados</h3>
+                    <p>Agrupe orçamentos fechados em pedidos únicos, consolide materiais por código/cor, checklist com barra de progresso e PDF.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📏</span>
+                    <h3>Planilha de Corte</h3>
+                    <p>Otimização automática do corte de perfis de alumínio. Redução de sobras e desperdícios. Exportação em PDF, Excel, TXT.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h3>Financeiro Completo</h3>
+                    <p>Contas a receber/pagar, parcelamento, pagamentos parciais, extrato mensal, relatório anual e conta corrente por cliente.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💾</span>
+                    <h3>Backup na Nuvem</h3>
+                    <p>Backup local em JSON ou na nuvem via Google Drive. Restauração completa ou seletiva por módulo. Seus dados sempre seguros.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📱</span>
+                    <h3>100% Offline</h3>
+                    <p>Funciona sem internet! Todos os dados salvos no dispositivo. Perfeito para uso na fábrica, escritório ou obra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section style="background:var(--bg-alt)">
+        <div class="container">
+            <p class="section-tag text-center">🌟 Diferenciais</p>
+            <h2 class="section-title text-center">Por que escolher o SQUAD?</h2>
+            <p class="section-desc text-center mx-auto" style="margin-bottom:32px">
+                Uma solução completa, sem mensalidade e feita para o seu negócio.
+            </p>
+            <div class="diffs-grid">
+                <div class="diff-item">
+                    <span class="emoji">📡</span>
+                    <div><h4>Offline total</h4><p>Use em qualquer lugar, mesmo sem sinal de internet</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">⚡</span>
+                    <div><h4>Cálculo automático</h4><p>Digite a medida e veja o preço na hora</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">✂️</span>
+                    <div><h4>Corte otimizado</h4><p>Economize até 15% em perfis de alumínio</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">🧩</span>
+                    <div><h4>Fórmulas flexíveis</h4><p>Qualquer tipo de produto, sem limites</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">📲</span>
+                    <div><h4>Interface mobile</h4><p>Use no celular, tablet ou computador</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">☁️</span>
+                    <div><h4>Backup na nuvem</h4><p>Dados seguros no Google Drive</p></div>
+                </div>
+                <div class="diff-item">
+                    <span class="emoji">💎</span>
+                    <div><h4>Sem mensalidade</h4><p>Pagamento único, uso vitalício</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PLANOS ===== -->
+    <section style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color:white">
+        <div class="container text-center">
+            <p class="section-tag text-center" style="color:#22d3ee">💎 Planos</p>
+            <h2 class="section-title text-center" style="color:white">Invista no seu negócio</h2>
+            <p class="section-desc text-center mx-auto" style="color:rgba(255,255,255,0.7)">
+                Escolha o plano ideal para sua vidraçaria. <strong style="color:#22d3ee">Pagamento único, sem surpresas.</strong>
+            </p>
+            <div class="pricing-grid">
+                <!-- Mensal -->
+                <div class="pricing-card">
+                    <span class="plan-emoji">📆</span>
+                    <div class="plan-name">Plano Mensal</div>
+                    <div class="plan-price">R$ 20 <span>/mês</span></div>
+                    <p class="plan-desc">Para testar o sistema sem compromisso.</p>
+                    <ul class="plan-features">
+                        <li>Todas as funcionalidades</li>
+                        <li>Suporte via WhatsApp</li>
+                        <li>Cancele quando quiser</li>
+                    </ul>
+                    <a href="https://wa.me/5542999608330?text=Quero%20o%20Plano%20Mensal%20de%20R%24%2020" target="_blank" class="btn-pricing btn-pricing-outline">💬 Contratar</a>
+                </div>
+
+                <!-- Anual (Destaque) -->
+                <div class="pricing-card destaque">
+                    <span class="badge">⭐ Mais Popular</span>
+                    <span class="plan-emoji">🌟</span>
+                    <div class="plan-name">Plano Anual</div>
+                    <div class="plan-price">R$ 120 <span>/ano</span></div>
+                    <p class="plan-desc">Menos de <strong>R$ 10 por mês!</strong> O melhor custo-benefício.</p>
+                    <ul class="plan-features">
+                        <li>Todas as funcionalidades</li>
+                        <li>Suporte prioritário WhatsApp</li>
+                        <li>Backup na nuvem incluso</li>
+                        <li>2 meses grátis</li>
+                    </ul>
+                    <a href="https://wa.me/5542999608330?text=Quero%20o%20Plano%20Anual%20de%20R%24%20120" target="_blank" class="btn-pricing">💬 Contratar</a>
+                </div>
+
+                <!-- Vitalício -->
+                <div class="pricing-card">
+                    <span class="plan-emoji">💎</span>
+                    <div class="plan-name">Plano Vitalício</div>
+                    <div class="plan-price">R$ 500 <span>único</span></div>
+                    <p class="plan-desc">Pague uma vez e use para sempre. Sem mensalidade!</p>
+                    <ul class="plan-features">
+                        <li>Todas as funcionalidades</li>
+                        <li>Suporte VIP prioritário</li>
+                        <li>Backup na nuvem incluso</li>
+                        <li>Atualizações vitalícias</li>
+                        <li>Economia de <strong>R$ 940</strong> em 4 anos</li>
+                    </ul>
+                    <a href="https://wa.me/5542999608330?text=Quero%20o%20Plano%20Vital%C3%ADcio%20de%20R%24%20500" target="_blank" class="btn-pricing btn-pricing-outline">💬 Contratar</a>
+                </div>
+            </div>
+            <p style="margin-top:24px; font-size:0.9rem; color:rgba(255,255,255,0.5);">
+                🔒 Pagamento 100% seguro • Acesso vitalício • Suporte direto com o desenvolvedor
+            </p>
+        </div>
+    </section>
+
+    <div style="height:8px; background:var(--bg-alt);"></div>
+
+    <!-- ===== SCREENSHOTS ===== -->
+    <section class="screenshots-bg">
+        <div class="container">
+            <p class="section-tag text-center">📸 Capturas de Tela</p>
+            <h2 class="section-title text-center">Veja o SQUAD em ação</h2>
+            <p class="section-desc text-center mx-auto">
+                Interface limpa e moderna, adaptada para celular e computador.
+            </p>
+
+            <div class="screenshot-tabs">
+                <button class="tab-btn active" onclick="switchTab('celular', this)">📱 Celular</button>
+                <button class="tab-btn" onclick="switchTab('pc', this)">💻 Computador</button>
+            </div>
+
+            <div class="screenshots-grid active" id="grid-celular">
+                <img src="telas celular/Screenshot_2026-05-18-21-16-00-05_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 1" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-16-25-21_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 2" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-17-15-72_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 3" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-17-41-29_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 4" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-18-16-89_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 5" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-19-17-54_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 6" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-19-42-62_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 7" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-20-38-20_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 8" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas celular/Screenshot_2026-05-18-21-21-27-24_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tela celular 9" loading="lazy" onclick="openLightbox(this.src)">
+            </div>
+
+            <div class="screenshots-grid" id="grid-pc">
+                <img src="telas pc/Captura de tela 2026-05-19 105637.png" alt="Tela PC 1" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105722.png" alt="Tela PC 2" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105751.png" alt="Tela PC 3" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105806.png" alt="Tela PC 4" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105819.png" alt="Tela PC 5" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105832.png" alt="Tela PC 6" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 105916.png" alt="Tela PC 7" loading="lazy" onclick="openLightbox(this.src)">
+                <img src="telas pc/Captura de tela 2026-05-19 110001.png" alt="Tela PC 8" loading="lazy" onclick="openLightbox(this.src)">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PÚBLICO-ALVO ===== -->
+    <section>
+        <div class="container text-center">
+            <p class="section-tag">🎯 Público-Alvo</p>
+            <h2 class="section-title">Para quem é o SQUAD?</h2>
+            <p class="section-desc mx-auto">
+                Desenvolvido por profissionais do ramo para profissionais do ramo.
+            </p>
+            <div class="audience-list">
+                <span class="audience-tag">Vidraçarias</span>
+                <span class="audience-tag">Serralherias de alumínio</span>
+                <span class="audience-tag">Fabricantes de esquadrias</span>
+                <span class="audience-tag">Instaladores de boxes e janelas</span>
+                <span class="audience-tag">Pequenas e médias fábricas</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESULTADOS ===== -->
+    <section style="background:var(--bg-alt)">
+        <div class="container">
+            <p class="section-tag text-center">📊 Resultados</p>
+            <h2 class="section-title text-center">Números que falam por si</h2>
+            <p class="section-desc text-center mx-auto">
+                O SQUAD transforma a gestão da sua esquadria em todos os aspectos.
+            </p>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon">⏱️</div>
+                    <h3>3x</h3>
+                    <p>Orçamentos mais rápidos</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">📉</div>
+                    <h3>-90%</h3>
+                    <p>Redução de erros nos cálculos</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">💰</div>
+                    <h3>Total</h3>
+                    <p>Controle das finanças</p>
+                </div>
+                <div class="result-card">
+                    <div class="result-icon">📦</div>
+                    <h3>100%</h3>
+                    <p>Estoque sempre organizado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>🚀 Pronto para transformar seu negócio?</h2>
+            <p>
+                Experimente o SQUAD agora mesmo. Sem cadastro, sem mensalidade.<br>
+                É só abrir e começar a usar!
+            </p>
+            <div class="hero-buttons" style="justify-content:center">
+                <a href="https://orcamentos-iota.vercel.app/" target="_blank" class="btn btn-primary">
+                    🚀 Experimente Grátis
+                </a>
+                <a href="https://wa.me/5542999608330" target="_blank" class="btn btn-whatsapp">
+                    💬 Tirar Dúvidas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>
+            <strong>SQUAD</strong> — Tecnologia que constrói resultados 🏗️<br>
+            Desenvolvido por <a href="https://wa.me/5542999608330" target="_blank">Emerson Dev</a> &bull; 
+            <a href="https://orcamentos-iota.vercel.app/" target="_blank">orcamentos-iota.vercel.app</a>
+        </p>
+    </footer>
+
+    <script>
+        // Abre lightbox com a imagem clicada
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            lb.classList.add('open');
+        }
+
+        // Alterna entre abas de screenshot
+        function switchTab(tab, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.screenshots-grid').forEach(g => g.classList.remove('active'));
+            document.getElementById('grid-' + tab).classList.add('active');
+        }
+
+        // Fecha lightbox com ESC
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+        });
+    </script>
+</body>
+</html>
