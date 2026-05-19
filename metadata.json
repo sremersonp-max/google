@@ -1,6 +1,0 @@
-{
-  "name": "Brand Bible Generator",
-  "description": "AI-powered tool that generates complete brand identities including logos, palettes, and typography from a company mission.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["AI Brand Strategy", "Automated Logo Generation", "Visual Style Guidelines"]
-}
