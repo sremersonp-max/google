@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQUAD - Gestão para Esquadrias</title>
+    <title>Accurato - Gestão para Esquadrias | Criado por um Serralheiro</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -54,6 +54,7 @@
             height: 100px;
             margin-bottom: 24px;
             box-shadow: 0 8px 32px rgba(99,102,241,0.3);
+            border-radius: 24px;
         }
         .hero h1 {
             font-size: 2.8rem;
@@ -195,6 +196,55 @@
         .diff-item .emoji { font-size: 1.5rem; flex-shrink: 0; }
         .diff-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
         .diff-item p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* ===== STORY CARD ===== */
+        .story-card {
+            background: linear-gradient(135deg, #6366f108, #22d3ee08);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .story-card::before {
+            content: '"';
+            position: absolute;
+            bottom: -40px;
+            right: 20px;
+            font-size: 180px;
+            opacity: 0.08;
+            font-family: serif;
+            pointer-events: none;
+        }
+        .story-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+        .story-card p {
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .story-signature {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 2px solid var(--primary);
+            font-style: italic;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        .age-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 100px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
 
         /* ===== PRICING PLANS ===== */
         .pricing-grid {
@@ -456,6 +506,8 @@
             .hero-buttons { flex-direction: column; }
             .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
             .results-grid { grid-template-columns: 1fr 1fr; }
+            .story-card { padding: 24px; }
+            .story-card h3 { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -469,12 +521,13 @@
     <!-- ===== HERO ===== -->
     <header class="hero">
         <div class="hero-content">
-            <img class="hero-logo" src="icones/icon-512x512.png" alt="SQUAD Logo">
-            <h1>SQUAD</h1>
+            <img class="hero-logo" src="icones/icon-512x512.png" alt="Accurato Logo">
+            <h1>Accurato</h1>
             <p class="subtitle">Sistema de Gestão para Esquadrias</p>
             <p class="desc">
-                <strong>Desenvolvido para o pequeno vidraceiro!</strong> O controle completo da sua esquadria, vidraçaria ou serralheria na palma da mão —
-                <strong>100% offline</strong>, direto no navegador do seu celular ou computador.
+                <strong>🔧 Desenvolvido por um serralheiro, para serralheiros! 🔧</strong><br><br>
+                Aos 55 anos, depois de uma vida inteira na serralheria, entrei na faculdade de <strong>Análise e Desenvolvimento de Sistemas</strong> com um objetivo: criar o sistema que sempre fez falta no meu dia a dia. E o Accurato nasceu daí.<br><br>
+                O controle completo da sua esquadria, vidraçaria ou serralheria na palma da mão — <strong>100% offline</strong>, direto no navegador do seu celular ou computador.
                 <strong style="display:block; margin-top:12px; color:#22d3ee;">Sem mensalidade • Pagamento único • Vitalício</strong>
             </p>
             <div class="hero-buttons">
@@ -485,7 +538,7 @@
                     ⭐ Avaliar App
                 </a>
                 <a href="https://wa.me/5542999608330" target="_blank" class="btn btn-whatsapp">
-                    💬 Fale Conosco
+                    💬 Fale com Quem Criou
                 </a>
             </div>
         </div>
@@ -497,7 +550,7 @@
             <p class="section-tag text-center">⚙️ Funcionalidades</p>
             <h2 class="section-title text-center">Tudo que você precisa</h2>
             <p class="section-desc text-center mx-auto">
-                Do orçamento à produção, o SQUAD centraliza a gestão da sua fábrica em um só lugar.
+                Do orçamento à produção, o Accurato centraliza a gestão da sua fábrica em um só lugar.
             </p>
             <div class="features-grid">
                 <div class="feature-card">
@@ -544,13 +597,32 @@
         </div>
     </section>
 
-    <!-- ===== DIFERENCIAIS ===== -->
+    <!-- ===== MINHA HISTÓRIA (Serralheiro -> Desenvolvedor) ===== -->
     <section style="background:var(--bg-alt)">
         <div class="container">
+            <p class="section-tag text-center">👨‍🔧 Minha Jornada</p>
+            <h2 class="section-title text-center">Da serralheria para a faculdade aos 55 anos</h2>
+            <div class="story-card">
+                <h3>🔧 Como um serralheiro de 55 anos decidiu aprender programação e criar o Accurato</h3>
+                <p>Meu nome é <strong>Emerson</strong>. Passei mais de 30 anos na serralheria, cortando alumínio, montando esquadrias, atendendo clientes e resolvendo problemas. Mas tinha um problema que eu não conseguia resolver: <strong>a gestão do meu negócio</strong>.</p>
+                <p>Testei sistemas caros (R$ 300+, R$ 500+ por mês), sistemas complicados, sistemas que não entendiam nada de esquadria. Até planilhas do Excel eu tentei. Nada funcionava direito. Aí tive uma ideia que muitos acharam loucura: <strong>"E se eu mesmo aprender a programar e criar o sistema que eu preciso?"</strong></p>
+                <p>Aos <strong>55 anos de idade</strong>, me inscrevi no curso de <strong>Análise e Desenvolvimento de Sistemas</strong>. Voltei a estudar depois de décadas. Enquanto alguns colegas de faculdade têm a idade dos meus filhos, eu estava lá, todo fim de semana, estudando lógica de programação, banco de dados, JavaScript. <strong>Nunca é tarde para aprender.</strong></p>
+                <p>Hoje, concilio a serralheria durante o dia com a faculdade e o desenvolvimento do Accurato à noite. Cada linha de código desse sistema foi pensada e testada na prática, na minha própria fábrica. Cada funcionalidade nasceu de uma dificuldade real que eu enfrentei na bancada.</p>
+                <div class="story-signature">
+                    <p>✨ <strong>Você não está comprando um software genérico. Está adquirindo a solução de quem tem 30+ anos de experiência na serralheria e agora também entende de tecnologia. Alguém que sabe o que é estar dos dois lados do balcão.</strong> ✨</p>
+                    <p style="margin-top: 12px;">— Emerson, 55 anos, serralheiro e acadêmico de Análise e Desenvolvimento de Sistemas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section>
+        <div class="container">
             <p class="section-tag text-center">🌟 Diferenciais</p>
-            <h2 class="section-title text-center">Por que escolher o SQUAD?</h2>
+            <h2 class="section-title text-center">Por que o Accurato é diferente?</h2>
             <p class="section-desc text-center mx-auto" style="margin-bottom:32px">
-                Uma solução completa, sem mensalidade e feita para o seu negócio.
+                Porque foi feito por alguém que vive os mesmos problemas que você.
             </p>
             <div class="diffs-grid">
                 <div class="diff-item">
@@ -580,6 +652,13 @@
                 <div class="diff-item">
                     <span class="emoji">💎</span>
                     <div><h4>Sem mensalidade</h4><p>Pagamento único, uso vitalício</p></div>
+                </div>
+                <div class="diff-item" style="background: linear-gradient(135deg, #6366f115, #22d3ee15); border-left: 4px solid var(--primary);">
+                    <span class="emoji">🔧➡️💻</span>
+                    <div>
+                        <h4>Feito por quem entende</h4>
+                        <p>Sou serralheiro há mais de 30 anos. Sei o que você precisa porque já precisei também. Nada de software genérico — é feito por quem vive da sua luta.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -641,7 +720,7 @@
                 </div>
             </div>
             <p style="margin-top:24px; font-size:0.9rem; color:rgba(255,255,255,0.5);">
-                🔒 Pagamento 100% seguro • Acesso vitalício • Suporte direto com o desenvolvedor
+                🔒 Pagamento 100% seguro • Acesso vitalício • Suporte direto com o desenvolvedor (que também é serralheiro e está na faculdade!)
             </p>
         </div>
     </section>
@@ -652,7 +731,7 @@
     <section class="screenshots-bg">
         <div class="container">
             <p class="section-tag text-center">📸 Capturas de Tela</p>
-            <h2 class="section-title text-center">Veja o SQUAD em ação</h2>
+            <h2 class="section-title text-center">Veja o Accurato em ação</h2>
             <p class="section-desc text-center mx-auto">
                 Interface limpa e moderna, adaptada para celular e computador.
             </p>
@@ -691,7 +770,7 @@
     <section>
         <div class="container text-center">
             <p class="section-tag">🎯 Público-Alvo</p>
-            <h2 class="section-title">Para quem é o SQUAD?</h2>
+            <h2 class="section-title">Para quem é o Accurato?</h2>
             <p class="section-desc mx-auto">
                 Desenvolvido por profissionais do ramo para profissionais do ramo.
             </p>
@@ -711,7 +790,7 @@
             <p class="section-tag text-center">📊 Resultados</p>
             <h2 class="section-title text-center">Números que falam por si</h2>
             <p class="section-desc text-center mx-auto">
-                O SQUAD transforma a gestão da sua esquadria em todos os aspectos.
+                O Accurato transforma a gestão da sua esquadria em todos os aspectos.
             </p>
             <div class="results-grid">
                 <div class="result-card">
@@ -743,7 +822,7 @@
         <div class="container">
             <h2>🚀 Pronto para transformar seu negócio?</h2>
             <p>
-                Experimente o SQUAD agora mesmo. Sem cadastro, sem mensalidade.<br>
+                Experimente o Accurato agora mesmo. Sem cadastro, sem mensalidade.<br>
                 É só abrir e começar a usar!
             </p>
             <div class="hero-buttons" style="justify-content:center">
@@ -751,7 +830,7 @@
                     🚀 Experimente Grátis
                 </a>
                 <a href="https://wa.me/5542999608330" target="_blank" class="btn btn-whatsapp">
-                    💬 Tirar Dúvidas
+                    💬 Tirar Dúvidas (com quem criou)
                 </a>
             </div>
         </div>
@@ -760,8 +839,9 @@
     <!-- ===== FOOTER ===== -->
     <footer>
         <p>
-            <strong>SQUAD</strong> — Tecnologia que constrói resultados 🏗️<br>
-            Desenvolvido por <a href="https://wa.me/5542999608330" target="_blank">Emerson Dev</a> &bull; 
+            <strong>Accurato</strong> — Feito por um serralheiro de 55 anos que foi para a faculdade para criar a solução que faltava. 🏗️💻<br>
+            Desenvolvido por <strong>Emerson</strong> — Serralheiro há 30+ anos e acadêmico de Análise e Desenvolvimento de Sistemas • 
+            <a href="https://wa.me/5542999608330" target="_blank">WhatsApp direto com quem criou</a><br>
             <a href="https://orcamentos-iota.vercel.app/" target="_blank">orcamentos-iota.vercel.app</a>
         </p>
     </footer>
